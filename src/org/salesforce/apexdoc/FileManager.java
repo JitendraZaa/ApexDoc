@@ -85,15 +85,14 @@ public class FileManager {
                 dos.close();
                 fos.close();
                 infoMessages.append(fileName + " Processed...\n");
-                System.out.println(fileName + " Processed...");
+                Utility.logMessage(fileName + " Processed...");
                 if (monitor != null)
                     monitor.worked(1);
             }
             copy(path);
             return true;
         } catch (Exception e) {
-
-            e.printStackTrace();
+            Utility.logMessage(e); 
         }
 
         return false;
@@ -440,7 +439,7 @@ public class FileManager {
                     }
                 }
             } else {
-                System.out.println("WARNING: No files found in directory: " + path);
+                Utility.logMessage("WARNING: No files found in directory: " + path);
             }
         }
         return listOfFilesToCopy;
@@ -468,7 +467,7 @@ public class FileManager {
                         contents += strLine;
                     }
                 }
-                // System.out.println("Contents = " + contents);
+                // Utility.logMessage("Contents = " + contents);
                 br.close();
                 return contents;
             }

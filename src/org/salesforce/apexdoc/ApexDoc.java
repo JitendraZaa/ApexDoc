@@ -35,8 +35,8 @@ public class ApexDoc {
         try {
             RunApexDoc(args, null);
         } catch (Exception ex) {
-            ex.printStackTrace();
-            System.out.println(ex.getMessage());
+            Utility.logMessage(ex);
+            Utility.logMessage(ex.getMessage());
             printHelp();
             System.exit(-1);
         }
@@ -147,19 +147,19 @@ public class ApexDoc {
             monitor.done();
 
         // we are done!
-        System.out.println("ApexDoc has completed!");
+        Utility.logMessage("ApexDoc has completed!");
     }
 
     private static void printHelp() {
-        System.out.println("ApexDoc - a tool for generating documentation from Salesforce Apex code class files.\n");
-        System.out.println("    Invalid Arguments detected.  The correct syntax is:\n");
-        System.out.println("apexdoc -s <source_directory> [-t <target_directory>] [-g <source_url>] [-h <homefile>] [-a <authorfile>] [-p <scope>]\n");
-        System.out.println("<source_directory> - The folder location which contains your apex .cls classes");
-        System.out.println("<target_directory> - Optional. Specifies your target folder where documentation will be generated.");
-        System.out.println("<source_url> - Optional. Specifies a URL where the source is hosted (so ApexDoc can provide links to your source).");
-        System.out.println("<homefile> - Optional. Specifies the html file that contains the contents for the home page\'s content area.");
-        System.out.println("<authorfile> - Optional. Specifies the text file that contains project information for the documentation header.");
-        System.out.println("<scope> - Optional. Semicolon seperated list of scopes to document.  Defaults to 'global;public'. ");
+        Utility.logMessage("ApexDoc - a tool for generating documentation from Salesforce Apex code class files.\n");
+        Utility.logMessage("    Invalid Arguments detected.  The correct syntax is:\n");
+        Utility.logMessage("apexdoc -s <source_directory> [-t <target_directory>] [-g <source_url>] [-h <homefile>] [-a <authorfile>] [-p <scope>]\n");
+        Utility.logMessage("<source_directory> - The folder location which contains your apex .cls classes");
+        Utility.logMessage("<target_directory> - Optional. Specifies your target folder where documentation will be generated.");
+        Utility.logMessage("<source_url> - Optional. Specifies a URL where the source is hosted (so ApexDoc can provide links to your source).");
+        Utility.logMessage("<homefile> - Optional. Specifies the html file that contains the contents for the home page\'s content area.");
+        Utility.logMessage("<authorfile> - Optional. Specifies the text file that contains project information for the documentation header.");
+        Utility.logMessage("<scope> - Optional. Semicolon seperated list of scopes to document.  Defaults to 'global;public'. ");
     }
 
     private static TreeMap<String, ClassGroup> createMapGroupNameToClassGroup(ArrayList<ClassModel> cModels,
@@ -356,7 +356,7 @@ public class ApexDoc {
             // we only want to return the parent class
             return cModelParent;
         } catch (Exception e) { // Catch exception if any
-            System.err.println("Error: " + e.getMessage());
+           Utility.logMessage("Error: " + e.getMessage());
         }
 
         return null;
