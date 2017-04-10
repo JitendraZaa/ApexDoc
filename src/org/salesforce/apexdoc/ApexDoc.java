@@ -47,9 +47,13 @@ public class ApexDoc {
     public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
         RunApexDoc(rgstrArgs, monitor);
     }
-
-    // public main routine which is used by both command line invocation and
-    // Eclipse PlugIn invocation
+ 
+    /**
+     * public main routine which is used by both command line invocation and
+     * Eclipse PlugIn invocation
+     * @param args
+     * @param monitor 
+     */
     public static void RunApexDoc(String[] args, IProgressMonitor monitor) {
         String sourceDirectory = "";
         String targetDirectory = "";
@@ -89,6 +93,19 @@ public class ApexDoc {
             rgstrScope[2] = "webService";
         }
 
+        apexDocHandler(targetDirectory, sourceDirectory, monitor, authorfilepath, homefilepath, hostedSourceURL);
+    }
+
+    /**
+     * This method is responsible to handle life cycle of document generation on basis of input provided
+     * @param targetDirectory
+     * @param sourceDirectory
+     * @param monitor
+     * @param authorfilepath
+     * @param homefilepath
+     * @param hostedSourceURL 
+     */
+    private static void apexDocHandler(String targetDirectory, String sourceDirectory, IProgressMonitor monitor, String authorfilepath, String homefilepath, String hostedSourceURL) {
         // find all the files to parse
         fm = new FileManager(targetDirectory);
         ArrayList<File> files = fm.getFiles(sourceDirectory);
